@@ -1,5 +1,7 @@
-# AnalogMultiButton
-Arduino library to capture multiple button presses through a single analog pin, as well as onPress and onRelease "events" and button press times.
+#AnalogMultiButton
+Arduino library to capture button presses on multiple buttons through a single analog pin, as well as onPress and onRelease "events", and ability to change behaviour based on button press duration.
+
+While up to ~20 buttons may be connected at a time, please note that the circuit and this library are only capable of capturing one *button press* at a time. If you hold down two buttons at once, only one of them will register. It's a limitation of the circuit being used. If you need to capture multiple simultaneous button presses through a single analog input pin you will need to find another circuit and library.
 
 ##How to use
 This library allows you to detect presses and releases of different buttons using a single analog input pin. To set this up with your Arduino, connect resistors on the following pattern:
@@ -35,8 +37,6 @@ This library allows you to detect presses and releases of different buttons usin
 The resistors you choose are up to you. The resistor between the 5V pin and the analog input is usually about the same size as the first half of the other resisitors combined. So if we had 4 resistors chained between buttons, where each is 1K, then the 5V-analog resistor would probably be about 1K + 1K = 2K
 
 Once you have it set up, try running Serial.println(analogRead(BUTTONS_PIN)); in loop() and press each button. The value being printed should change when each button is pressed, and those values shouldn't be too close to each other. The more evenly spaced the values are betweeon 0 and 1023 the better (the less chance that one button press will be mistaken for another).
-
-Please note that the circuit and this library are only capable of capturing one press at a time.If you hold down two buttons at once, only one of them will work. If you need to capture multiple simultaneous button presses through a single analog input pin you will need to find another circuit and library.
 
 ##Example code
 Start a new project and copy and paste the following to try out the library.
