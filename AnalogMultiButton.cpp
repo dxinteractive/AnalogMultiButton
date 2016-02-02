@@ -1,5 +1,5 @@
 /*
- * analog_multi_button.h
+ * AnalogMultiButton.cpp
  * A library to capture multiple button presses through a single analog pin
  *
  * Copyright (c) 2016 Damien Clarke
