@@ -26,7 +26,7 @@
 #include <Arduino.h>
 #include "AnalogMultiButton.h"
 
-AnalogMultiButton::AnalogMultiButton(int pin, int total, int values[], int debounceDuration, int analogResolution)
+AnalogMultiButton::AnalogMultiButton(int pin, int total, const int values[], unsigned int debounceDuration, unsigned int analogResolution)
 {
   pinMode(pin, INPUT ); // ensure button pin is an input
   digitalWrite(pin, LOW ); // ensure pullup is off on button pin

@@ -39,7 +39,7 @@ class AnalogMultiButton
     // debounceDuration - milliseconds that a button must be continually down to count as a press
     // analogResolution - nearly always 1024, but sometimes people use different analog input resolutions
     
-    AnalogMultiButton(int pin, int total, int values[], int debounceDuration = 20, int analogResolution = 1024);
+    AnalogMultiButton(int pin, int total, const int values[], unsigned int debounceDuration = 20, unsigned int analogResolution = 1024);
 
     boolean isPressed(int button) { return buttonPressed == button; } // evaluates to true continually while <button> is pressed
     boolean isPressed(int button, int duration); // called continually while <button> is pressed for longer than <duration>
@@ -55,8 +55,8 @@ class AnalogMultiButton
   private:
     int pin;
     int total;
-    int analogResolution;
-    int debounceDuration;
+    unsigned int analogResolution;
+    unsigned int debounceDuration;
     int valueBoundaries[AnalogMultiButton::MAX_BUTTONS];
 
     int buttonPressed = -1;

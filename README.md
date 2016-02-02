@@ -61,7 +61,7 @@ const int BUTTONS_TOTAL = 3;
 // find out what the value of analogRead is when you press each of your buttons and put them in this array
 // you can find this out by putting Serial.println(analogRead(BUTTONS_PIN)); in your loop() and opening the serial monitor to see the values
 // make sure they are in order of smallest to largest
-int BUTTONS_VALUES[BUTTONS_TOTAL] = {0, 320, 678};
+const int BUTTONS_VALUES[BUTTONS_TOTAL] = {0, 320, 678};
 
 // you can also define constants for each of your buttons, which makes your code easier to read
 // define these in the same order as the numbers in your BUTTONS_VALUES array, so whichever button has the smallest analogRead() number should come first
