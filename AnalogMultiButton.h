@@ -1,5 +1,5 @@
 /*
- * analog_multi_button.h
+ * AnalogMultiButton.h
  * A library to capture multiple button presses through a single analog pin
  *
  * Copyright (c) 2016 Damien Clarke
@@ -23,8 +23,8 @@
  * SOFTWARE.  
  */
  
-#ifndef ANALOG_MULTI_BUTTON_h
-#define ANALOG_MULTI_BUTTON_h
+#ifndef ANALOG_MULTI_BUTTON_H
+#define ANALOG_MULTI_BUTTON_H
 
 #include <Arduino.h>
 
@@ -62,7 +62,6 @@ class AnalogMultiButton
     int buttonPressed = -1;
     int buttonOnPress = -1;
     int buttonOnRelease = -1;
-    //int cancelledRelease = -1;
 
     unsigned long thisUpdateTime = 0;
     unsigned long lastUpdateTime = 0;
