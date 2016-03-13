@@ -1,5 +1,5 @@
 #AnalogMultiButton
-Arduino library to capture button presses on multiple buttons through a single analog pin. It provides a set of functions to see when buttons are being held, pressed, released, pressed for a duration, released after a duration, and also allows a button being held to repeatedly report a "press" on a timed interval. The library can also cope with different or irregular times between calling update().
+Arduino library to capture button presses on multiple buttons through a single analog pin. It provides a set of functions to see when buttons are being held, pressed, released, pressed for a duration, released after a duration, and also allows a button being held to repeatedly report a "press" on a timed interval. The library also debouunces each button press, it can also cope with different or irregular times between calling update(), and can be used with analog inputs that have an analogRead range other than 0-1023.
 
 See the comments in AnalogMultiButton.h or the examples below for details.
 
@@ -73,6 +73,9 @@ const int BUTTON_BLUE = 2;
 
 // make an AnalogMultiButton object, pass in the pin, total and values array
 AnalogMultiButton buttons(BUTTONS_PIN, BUTTONS_TOTAL, BUTTONS_VALUES);
+
+// pass a fourth parameter to set the debounce time in milliseconds
+// this defaults to 20 and can be increased if you're working with particularly bouncy buttons
 
 void setup() {
   // begin serial so we can see which buttons are being pressed through the serial monitor
