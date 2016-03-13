@@ -144,8 +144,6 @@ void loop() {
   // if(buttons.onPress(BUTTON_BLUE, 1000, true, 500)) {}
   //
   
-  */
-  
   delay(10);
 }
 ```
