@@ -42,13 +42,13 @@ class AnalogMultiButton
     AnalogMultiButton(int pin, int total, const int values[], unsigned int debounceDuration = 20, unsigned int analogResolution = 1024);
 
     boolean isPressed(int button) { return buttonPressed == button; } // evaluates to true continually while <button> is pressed
-    boolean isPressed(int button, int duration); // called continually while <button> is pressed for longer than <duration> (ms)
+    boolean isPressedAfter(int button, int duration); // called continually while <button> is pressed for longer than <duration> (ms)
     boolean onPress(int button) { return buttonOnPress == button; } // evaluates to true for one update cycle after <button> is pressed
-    boolean onPress(int button, int duration, boolean alsoOnPress = false); // evaluates to true for one update cycle after <button> is pressed for longer than <duration> (ms)
-	// ^ setting alsoOnPress to true will cause this to return true for one update cycle after <button> is pressed
-	boolean onPress(int button, int duration, boolean alsoOnPress, int repeatTime); // evaluates to true for one update cycle after <button> is pressed for longer than <duration>, and then repeatedly after that every <repeatTime> milliseconds
-	// ^ setting alsoOnPress to true will cause this to return true for one update cycle after <button> is pressed
-    boolean onRelease(int button)  { return buttonOnRelease == button; }  // evaluates to true for one update cycle after <button> is released
+    boolean onPressAfter(int button, int duration); // evaluates to true for one update cycle after <button> is pressed for longer than <duration> (ms)
+	boolean onPressAndAfter(int button, int duration); // evaluates to true for one update cycle after <button> is pressed, and again once it has been pressed for longer than <duration> (ms)
+	boolean onPressAfter(int button, int duration, int repeatTime); // evaluates to true for one update cycle after <button> is pressed for longer than <duration>, and then repeatedly after that every <repeatTime> milliseconds
+    boolean onPressAndAfter(int button, int duration, int repeatTime); // evaluates to true for one update cycle after <button> is pressed, again when pressed for longer than <duration>, and then repeatedly after that every <repeatTime> milliseconds
+	boolean onRelease(int button)  { return buttonOnRelease == button; }  // evaluates to true for one update cycle after <button> is released
     boolean onReleaseBefore(int button, int duration);  // evaluates to true for one update cycle after <button> is release, and was pressed for shorter than <duration>
 	boolean onReleaseAfter(int button, int duration);  // evaluates to true for one update cycle after <button> is release, and was pressed for longer than or equal to <duration>
     int getPressDuration(); // gets the duration that the current button has been pressed for, in milliseconds

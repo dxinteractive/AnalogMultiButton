@@ -75,20 +75,23 @@ void AnalogMultiButton::update()
   }
 }
 
-boolean AnalogMultiButton::isPressed(int button, int duration)
+boolean AnalogMultiButton::isPressedAfter(int button, int duration)
 {
   return buttonPressed == button && (millis() >= duration + buttonPressTime);
 }
 
-boolean AnalogMultiButton::onPress(int button, int duration, boolean alsoOnPress)
+boolean AnalogMultiButton::onPressAfter(int button, int duration)
 {
    unsigned long delayedPressTime = duration + buttonPressTime;
-   boolean press = alsoOnPress && onPress(button);
-   boolean delayedPress = buttonPressed == button && (millis() >= delayedPressTime) && (lastUpdateTime < delayedPressTime);
-   return press || delayedPress;
+   return buttonPressed == button && (millis() >= delayedPressTime) && (lastUpdateTime < delayedPressTime);
 }
 
-boolean AnalogMultiButton::onPress(int button, int duration, boolean alsoOnPress, int repeatTime)
+boolean AnalogMultiButton::onPressAndAfter(int button, int duration)
+{
+   return onPress(button) || onPressAfter(button, duration);
+}
+
+boolean AnalogMultiButton::onPressAfter(int button, int duration, int repeatTime)
 {
    unsigned long ms = millis();
    int a = (int(ms - buttonPressTime) - duration + int(repeatTime * 0.5)) / repeatTime;
@@ -96,9 +99,12 @@ boolean AnalogMultiButton::onPress(int button, int duration, boolean alsoOnPress
 	a = 0;
 
    unsigned long delayedPressTime = duration + buttonPressTime + repeatTime*a;
-   boolean press = alsoOnPress && onPress(button);
-   boolean delayedPress = buttonPressed == button && (ms >= delayedPressTime) && (lastUpdateTime < delayedPressTime);
-   return press || delayedPress;
+   return buttonPressed == button && (ms >= delayedPressTime) && (lastUpdateTime < delayedPressTime);
+}
+
+boolean AnalogMultiButton::onPressAndAfter(int button, int duration, int repeatTime)
+{
+   return onPress(button) || onPressAfter(button, duration, repeatTime);
 }
 
 boolean AnalogMultiButton::onReleaseBefore(int button, int duration)
