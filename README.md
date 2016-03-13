@@ -1,5 +1,5 @@
 #AnalogMultiButton
-Arduino library to capture button presses on multiple buttons through a single analog pin. It provides a set of functions to see when buttons are being held, pressed, released, pressed for a duration, released after a duration, and also allows a button being held to repeatedly report a "press" on a timed interval. The library also debouunces each button press, it can also cope with different or irregular times between calling update(), and can be used with analog inputs that have an analogRead range other than 0-1023.
+Arduino library to capture button presses on multiple buttons through a single analog pin. It provides a set of functions to see when buttons are being held, pressed, released, pressed for a duration, released before or after a specific duration has elapsed, and also allows a button being held to repeatedly report a "press" on a timed interval for use with cursors or scrolling. The library also debouunces each button press, it can also cope with different or irregular times between calling update(), and can be used with analog inputs that have an analogRead range other than 0-1023.
 
 See the comments in AnalogMultiButton.h or the examples below for details.
 
@@ -113,21 +113,38 @@ void loop() {
   }
 
   // do this once if BUTTON_BLUE has been held for 1 second
-  if(buttons.onPress(BUTTON_BLUE, 1000))
+  if(buttons.onPressAfter(BUTTON_BLUE, 1000))
   {
     Serial.println("Blue has been down for 1 second");
   }
+  
+  // do this contantly if BUTTON_GREEN has been held down for less than a second
+  if(buttons.isPressedBefore(BUTTON_GREEN, 1000))
+  {
+    Serial.print("Green is held for ");
+    Serial.print(buttons.getPressDuration());
+    Serial.println(" ms");
+  }
 
   // do this contantly if BUTTON_RED has been held down for more than a second
-  if(buttons.isPressed(BUTTON_RED, 1000))
+  if(buttons.isPressedAfter(BUTTON_RED, 1000))
   {
     Serial.print("Red is held for ");
     Serial.print(buttons.getPressDuration());
     Serial.println(" ms");
   }
 
+  // do this if BUTTON_BLUE was released, and it was held for 1 second or less
+  if(buttons.onReleaseBefore(BUTTON_BLUE, 1000))
+  {
+    Serial.println("Blue has been released after less than 1 second of pressing");
+    Serial.print("Blue was held for ");
+    Serial.print(buttons.getLastReleasePressDuration());
+    Serial.println(" ms");
+  }
+  
   // do this if BUTTON_BLUE was released, and it was held for 2 seconds or more
-  if(buttons.onRelease(BUTTON_BLUE, 2000))
+  if(buttons.onReleaseAfter(BUTTON_BLUE, 2000))
   {
     Serial.println("Blue has been released after at least 2 seconds of pressing");
     Serial.print("Blue was held for ");
@@ -139,14 +156,14 @@ void loop() {
   // More examples:
   //
   // do this once when BUTTON_BLUE is pressed, and again after 1 second
-  // if(buttons.onPress(BUTTON_BLUE, 1000, true)) {}
+  // if(buttons.onPressAndAfter(BUTTON_BLUE, 1000)) {}
   //
   // do this once if BUTTON_BLUE is held for 1 second, and again every 0.5 seconds after that
-  // if(buttons.onPress(BUTTON_BLUE, 1000, false, 500)) {}
+  // if(buttons.onPressAfter(BUTTON_BLUE, 1000, 500)) {}
   //
   // do this once when BUTTON_BLUE is pressed, and again after 1 second, and again every 0.5 seconds after that
   // useful for cursors or scrolling through menu items
-  // if(buttons.onPress(BUTTON_BLUE, 1000, true, 500)) {}
+  // if(buttons.onPressAndAfter(BUTTON_BLUE, 1000, true, 500)) {}
   //
   
   delay(10);
