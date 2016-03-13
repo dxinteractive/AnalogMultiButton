@@ -163,7 +163,7 @@ void loop() {
   //
   // do this once when BUTTON_BLUE is pressed, and again after 1 second, and again every 0.5 seconds after that
   // useful for cursors or scrolling through menu items
-  // if(buttons.onPressAndAfter(BUTTON_BLUE, 1000, true, 500)) {}
+  // if(buttons.onPressAndAfter(BUTTON_BLUE, 1000, 500)) {}
   //
   
   delay(10);
