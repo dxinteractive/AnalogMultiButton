@@ -1,5 +1,5 @@
 #AnalogMultiButton
-Arduino library to capture button presses on multiple buttons through a single analog pin, as well as onPress and onRelease "events", and ability to change behaviour based on button press duration.
+Arduino library to capture button presses on multiple buttons through a single analog pin. It provides a set of functions to see when buttons are being held, pressed, released, pressed for a duration, released after a duration, and also allows a button being held to repeatedly report a "press" on a timed interval. See the comments in AnalogMultiButton.h or the examples below for details.
 
 While up to ~20 buttons may be connected at a time, please note that the circuit and this library are only capable of capturing one *button press* at a time. If you hold down two buttons at once, only one of them will register. It's a limitation of the circuit being used. If you need to capture multiple simultaneous button presses through a single analog input pin you will need to find another circuit and library.
 
@@ -124,11 +124,27 @@ void loop() {
   // do this if BUTTON_BLUE was released, and it was held for 2 seconds or more
   if(buttons.onRelease(BUTTON_BLUE, 2000))
   {
-    Serial.println("Blue has been released after 2 seconds");
+    Serial.println("Blue has been released after at least 2 seconds of pressing");
     Serial.print("Blue was held for ");
     Serial.print(buttons.getLastReleasePressDuration());
     Serial.println(" ms");
   }
+  
+  //
+  // More examples:
+  //
+  // do this once when BUTTON_BLUE is pressed, and again after 1 second
+  // if(buttons.onPress(BUTTON_BLUE, 1000, true)) {}
+  //
+  // do this once if BUTTON_BLUE is held for 1 second, and again every 0.5 seconds after that
+  // if(buttons.onPress(BUTTON_BLUE, 1000, false, 500)) {}
+  //
+  // do this once when BUTTON_BLUE is pressed, and again after 1 second, and again every 0.5 seconds after that
+  // useful for cursors or scrolling through menu items
+  // if(buttons.onPress(BUTTON_BLUE, 1000, true, 500)) {}
+  //
+  
+  */
   
   delay(10);
 }
