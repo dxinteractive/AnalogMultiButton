@@ -69,11 +69,9 @@ void AnalogMultiButton::update()
       buttonPressTime = thisUpdateTime;
     
     buttonOnPress = button;
-    //if(buttonPressed != cancelledRelease)
-      buttonOnRelease = buttonPressed;
+	buttonOnRelease = buttonPressed;
       
     buttonPressed = button;
-    //cancelledRelease = -1;
   }
 }
 
@@ -82,9 +80,25 @@ boolean AnalogMultiButton::isPressed(int button, int duration)
   return buttonPressed == button && (millis() >= duration + buttonPressTime);
 }
 
-boolean AnalogMultiButton::onPress(int button, int duration)
+boolean AnalogMultiButton::onPress(int button, int duration, boolean alsoOnPress)
 {
-   return buttonPressed == button && (millis() >= duration + buttonPressTime) && (lastUpdateTime < duration + buttonPressTime);
+   unsigned long delayedPressTime = duration + buttonPressTime;
+   boolean press = alsoOnPress && onPress(button);
+   boolean delayedPress = buttonPressed == button && (millis() >= delayedPressTime) && (lastUpdateTime < delayedPressTime);
+   return press || delayedPress;
+}
+
+boolean AnalogMultiButton::onPress(int button, int duration, boolean alsoOnPress, int repeatTime)
+{
+   unsigned long ms = millis();
+   int a = (int(ms - buttonPressTime) - duration + int(repeatTime * 0.5)) / repeatTime;
+   if(a < 0)
+	a = 0;
+
+   unsigned long delayedPressTime = duration + buttonPressTime + repeatTime*a;
+   boolean press = alsoOnPress && onPress(button);
+   boolean delayedPress = buttonPressed == button && (ms >= delayedPressTime) && (lastUpdateTime < delayedPressTime);
+   return press || delayedPress;
 }
 
 boolean AnalogMultiButton::onRelease(int button, int duration)
