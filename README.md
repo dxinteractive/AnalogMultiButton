@@ -1,5 +1,7 @@
 #AnalogMultiButton
-Arduino library to capture button presses on multiple buttons through a single analog pin. It provides a set of functions to see when buttons are being held, pressed, released, pressed for a duration, released after a duration, and also allows a button being held to repeatedly report a "press" on a timed interval. See the comments in AnalogMultiButton.h or the examples below for details.
+Arduino library to capture button presses on multiple buttons through a single analog pin. It provides a set of functions to see when buttons are being held, pressed, released, pressed for a duration, released after a duration, and also allows a button being held to repeatedly report a "press" on a timed interval. The library can also cope with different or irregular times between calling update().
+
+See the comments in AnalogMultiButton.h or the examples below for details.
 
 While up to ~20 buttons may be connected at a time, please note that the circuit and this library are only capable of capturing one *button press* at a time. If you hold down two buttons at once, only one of them will register. It's a limitation of the circuit being used. If you need to capture multiple simultaneous button presses through a single analog input pin you will need to find another circuit and library.
 
