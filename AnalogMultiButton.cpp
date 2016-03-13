@@ -101,7 +101,12 @@ boolean AnalogMultiButton::onPress(int button, int duration, boolean alsoOnPress
    return press || delayedPress;
 }
 
-boolean AnalogMultiButton::onRelease(int button, int duration)
+boolean AnalogMultiButton::onReleaseBefore(int button, int duration)
+{
+   return buttonOnRelease == button && (millis() < duration + releasedButtonPressTime);
+}
+
+boolean AnalogMultiButton::onReleaseAfter(int button, int duration)
 {
    return buttonOnRelease == button && (millis() >= duration + releasedButtonPressTime);
 }

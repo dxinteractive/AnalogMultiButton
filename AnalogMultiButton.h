@@ -49,7 +49,8 @@ class AnalogMultiButton
 	boolean onPress(int button, int duration, boolean alsoOnPress, int repeatTime); // evaluates to true for one update cycle after <button> is pressed for longer than <duration>, and then repeatedly after that every <repeatTime> milliseconds
 	// ^ setting alsoOnPress to true will cause this to return true for one update cycle after <button> is pressed
     boolean onRelease(int button)  { return buttonOnRelease == button; }  // evaluates to true for one update cycle after <button> is released
-    boolean onRelease(int button, int duration);  // evaluates to true for one update cycle after <button> is release, and was pressed for longer than <duration>
+    boolean onReleaseBefore(int button, int duration);  // evaluates to true for one update cycle after <button> is release, and was pressed for shorter than <duration>
+	boolean onReleaseAfter(int button, int duration);  // evaluates to true for one update cycle after <button> is release, and was pressed for longer than or equal to <duration>
     int getPressDuration(); // gets the duration that the current button has been pressed for, in milliseconds
     int getLastReleasePressDuration() { return millis() - releasedButtonPressTime; } // gets the duration that the last released button was pressed for, in milliseconds
     
