@@ -77,13 +77,13 @@ void AnalogMultiButton::update()
 
 boolean AnalogMultiButton::isPressedAfter(int button, int duration)
 {
-  return buttonPressed == button && (millis() >= duration + buttonPressTime);
+  return buttonPressed == button && (thisUpdateTime >= duration + buttonPressTime);
 }
 
 boolean AnalogMultiButton::onPressAfter(int button, int duration)
 {
    unsigned long delayedPressTime = duration + buttonPressTime;
-   return buttonPressed == button && (millis() >= delayedPressTime) && (lastUpdateTime < delayedPressTime);
+   return buttonPressed == button && (thisUpdateTime >= delayedPressTime) && (lastUpdateTime < delayedPressTime);
 }
 
 boolean AnalogMultiButton::onPressAndAfter(int button, int duration)
@@ -93,13 +93,12 @@ boolean AnalogMultiButton::onPressAndAfter(int button, int duration)
 
 boolean AnalogMultiButton::onPressAfter(int button, int duration, int repeatTime)
 {
-   unsigned long ms = millis();
-   int a = (int(ms - buttonPressTime) - duration + int(repeatTime * 0.5)) / repeatTime;
+   int a = (int(thisUpdateTime - buttonPressTime) - duration + int(repeatTime * 0.5)) / repeatTime;
    if(a < 0)
 	a = 0;
 
    unsigned long delayedPressTime = duration + buttonPressTime + repeatTime*a;
-   return buttonPressed == button && (ms >= delayedPressTime) && (lastUpdateTime < delayedPressTime);
+   return buttonPressed == button && (thisUpdateTime >= delayedPressTime) && (lastUpdateTime < delayedPressTime);
 }
 
 boolean AnalogMultiButton::onPressAndAfter(int button, int duration, int repeatTime)
@@ -109,12 +108,12 @@ boolean AnalogMultiButton::onPressAndAfter(int button, int duration, int repeatT
 
 boolean AnalogMultiButton::onReleaseBefore(int button, int duration)
 {
-   return buttonOnRelease == button && (millis() < duration + releasedButtonPressTime);
+   return buttonOnRelease == button && (thisUpdateTime < duration + releasedButtonPressTime);
 }
 
 boolean AnalogMultiButton::onReleaseAfter(int button, int duration)
 {
-   return buttonOnRelease == button && (millis() >= duration + releasedButtonPressTime);
+   return buttonOnRelease == button && (thisUpdateTime >= duration + releasedButtonPressTime);
 }
 
 int AnalogMultiButton::getPressDuration()
@@ -122,7 +121,7 @@ int AnalogMultiButton::getPressDuration()
   if(buttonPressed == -1)
     return 0;
     
-  return millis() - buttonPressTime;
+  return thisUpdateTime - buttonPressTime;
 }
 
 int AnalogMultiButton::getButtonForAnalogValue(int value)
@@ -137,10 +136,10 @@ int AnalogMultiButton::getButtonForAnalogValue(int value)
 boolean AnalogMultiButton::debounceButton(int button)
 {
   if(button != lastDebounceButton)
-    lastDebounceButtonTime = millis();
+    lastDebounceButtonTime = thisUpdateTime;
   
   lastDebounceButton = button;
-  return (millis() - lastDebounceButtonTime > debounceDuration);
+  return (thisUpdateTime - lastDebounceButtonTime > debounceDuration);
 }
 
 
