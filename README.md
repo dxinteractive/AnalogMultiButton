@@ -1,6 +1,5 @@
 #AnalogMultiButton
 [http://damienclarke.me/code/analog-multi-button](http://damienclarke.me/code/analog-multi-button)
-Damien Clarke, 2016
 
 AnalogMultiButton is an Arduino library to capture button presses on multiple buttons through a single analog pin. It provides a set of functions to detect when buttons are being held, pressed, released, pressed for a duration, released before or after a specific duration has elapsed, and also allows a button being held to repeatedly report a "press" on a timed interval for use with cursors or scrolling. The library also debounces each button press, it can also cope with different or irregular times between calling update(), and can be used with analog inputs that have an analogRead range other than 0-1023.
 
@@ -175,3 +174,5 @@ void loop() {
 
 ##Further functionality
 See AnalogMultiButton.h for details on any remaining functionality it provides.
+
+Damien Clarke, 2016
