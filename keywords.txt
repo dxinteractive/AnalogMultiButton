@@ -12,6 +12,7 @@ AnalogMultiButton	KEYWORD1
 # Methods and Functions (KEYWORD2)
 #######################################
 isPressed	KEYWORD2
+isPressedBefore	KEYWORD2
 isPressedAfter	KEYWORD2
 onPress	KEYWORD2
 onPressAfter	KEYWORD2

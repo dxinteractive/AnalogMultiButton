@@ -42,6 +42,7 @@ class AnalogMultiButton
     AnalogMultiButton(int pin, int total, const int values[], unsigned int debounceDuration = 20, unsigned int analogResolution = 1024);
 
     boolean isPressed(int button) { return buttonPressed == button; } // evaluates to true continually while <button> is pressed
+	boolean isPressedBefore(int button, int duration); // called continually while <button> is pressed for less than <duration> (ms)
     boolean isPressedAfter(int button, int duration); // called continually while <button> is pressed for longer than <duration> (ms)
     boolean onPress(int button) { return buttonOnPress == button; } // evaluates to true for one update cycle after <button> is pressed
     boolean onPressAfter(int button, int duration); // evaluates to true for one update cycle after <button> is pressed for longer than <duration> (ms)

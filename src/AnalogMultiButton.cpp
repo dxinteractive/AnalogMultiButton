@@ -75,6 +75,11 @@ void AnalogMultiButton::update()
   }
 }
 
+boolean AnalogMultiButton::isPressedBefore(int button, int duration)
+{
+  return buttonPressed == button && (thisUpdateTime < duration + buttonPressTime);
+}
+
 boolean AnalogMultiButton::isPressedAfter(int button, int duration)
 {
   return buttonPressed == button && (thisUpdateTime >= duration + buttonPressTime);
