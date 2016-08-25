@@ -1,5 +1,4 @@
 #AnalogMultiButton
-[http://damienclarke.me/code/analog-multi-button](http://damienclarke.me/code/analog-multi-button)
 
 AnalogMultiButton is an Arduino library to capture button presses on multiple buttons through a single analog pin. It provides a set of functions to detect when buttons are being held, pressed, released, pressed for a duration, released before or after a specific duration has elapsed, and also allows a button being held to repeatedly report a "press" on a timed interval for use with cursors or scrolling. The library also debounces each button press, it can also cope with different or irregular times between calling update(), and can be used with analog inputs that have an analogRead range other than 0-1023.
 
@@ -172,4 +171,14 @@ void loop() {
 ##Further functionality
 See AnalogMultiButton.h for details on any remaining functionality it provides.
 
-Damien Clarke, 2016
+##License
+
+Licensed under the MIT License (MIT)
+
+Copyright (c) 2016, Damien Clarke, [http:/damienclarke.me](http:/damienclarke.me)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
