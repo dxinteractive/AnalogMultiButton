@@ -1,11 +1,14 @@
 #AnalogMultiButton
-[http://damienclarke.me/code/analog-multi-button](http://damienclarke.me/code/analog-multi-button)
 
 AnalogMultiButton is an Arduino library to capture button presses on multiple buttons through a single analog pin. It provides a set of functions to detect when buttons are being held, pressed, released, pressed for a duration, released before or after a specific duration has elapsed, and also allows a button being held to repeatedly report a "press" on a timed interval for use with cursors or scrolling. The library also debounces each button press, it can also cope with different or irregular times between calling update(), and can be used with analog inputs that have an analogRead range other than 0-1023.
 
 See the comments in AnalogMultiButton.h or the examples below for details.
 
 While up to ~20 buttons may be connected at a time, please note that the circuit and this library are only capable of capturing one *button press* at a time. If you hold down two buttons at once, only one of them will register. It's a limitation of the circuit being used. If you need to capture multiple simultaneous button presses through a single analog input pin you will need to find another circuit and library.
+
+##How to install
+In the Arduino IDE, go to Sketch > Include libraries > Manage libraries, and search for AnalogMultiButton.
+Or you can also just use the files directly from the src folder.
 
 ##How to use
 This library allows you to detect presses and releases of different buttons using a single analog input pin. To set this up with your Arduino, connect resistors in the following pattern:
@@ -40,14 +43,7 @@ This library allows you to detect presses and releases of different buttons usin
 
 The resistors you choose are up to you. The resistor between the 5V pin and the analog input is usually about the same size as the first half of the other resisitors combined. So if we had 4 resistors chained between buttons, where each is 1K, then the 5V-analog resistor would probably be about 1K + 1K = 2K
 
-Download the files in this repo and put them in a folder called "AnalogMultiButton" in your Arduino libraries folder. It should be something like this:
-
-```
-<Your arduino library directory>/AnalogMultiButton/AnalogMultiButton.h
-<Your arduino library directory>/AnalogMultiButton/AnalogMultiButton.cpp
-```
-
-Once you have it set up, try running Serial.println(analogRead(BUTTONS_PIN)); in loop() and press each button. The value being printed should change when each button is pressed, and those values shouldn't be too close to each other. The more evenly spaced the values are betweeon 0 and 1023 the better (the less chance that one button press will be mistaken for another).
+Once you have the library installed, try running Serial.println(analogRead(BUTTONS_PIN)); in loop() and press each button. The value being printed should change when each button is pressed, and those values shouldn't be too close to each other. The more evenly spaced the values are betweeon 0 and 1023 the better (the less chance that one button press will be mistaken for another).
 
 ##Example code
 Start a new project and copy and paste the following to try out the library.
@@ -175,4 +171,14 @@ void loop() {
 ##Further functionality
 See AnalogMultiButton.h for details on any remaining functionality it provides.
 
-Damien Clarke, 2016
+##License
+
+Licensed under the MIT License (MIT)
+
+Copyright (c) 2016, Damien Clarke, [http:/damienclarke.me](http:/damienclarke.me)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
