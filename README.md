@@ -8,11 +8,11 @@ AnalogMultiButton is an Arduino library to capture button presses on multiple bu
 
 While up to ~20 buttons may be connected at a time, please note that the circuit and this library are only capable of capturing one *button press* at a time. If you hold down two buttons at once, only one of them will register. It's a limitation of the circuit being used. If you need to capture multiple simultaneous button presses through a single analog input pin you will need to find another circuit and library.
 
-##How to install
+## How to install
 In the Arduino IDE, go to Sketch > Include libraries > Manage libraries, and search for AnalogMultiButton.
 Or you can also just use the files directly from the src folder.
 
-##How to use
+## How to use
 This library allows you to detect presses and releases of different buttons using a single analog input pin. To set this up with your Arduino, connect resistors in the following pattern:
 
 ```
@@ -47,7 +47,7 @@ The resistors you choose are up to you. The resistor between the 5V pin and the 
 
 Once you have the library installed, try running Serial.println(analogRead(BUTTONS_PIN)); in loop() and press each button. The value being printed should change when each button is pressed, and those values shouldn't be too close to each other. The more evenly spaced the values are betweeon 0 and 1023 the better (the less chance that one button press will be mistaken for another).
 
-##Example code
+## Example code
 Start a new project and copy and paste the following to try out the library.
 
 ```Arduino
