@@ -50,7 +50,7 @@ Once you have the library installed, try running Serial.println(analogRead(BUTTO
 ## Example code
 Start a new project and copy and paste the following to try out the library.
 
-```Arduino
+```C++
 // include the AnalogMultiButton library
 #include <AnalogMultiButton.h>
 
