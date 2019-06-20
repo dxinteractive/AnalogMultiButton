@@ -170,10 +170,10 @@ void loop() {
 }
 ```
 
-##Further functionality
+## Further functionality
 See AnalogMultiButton.h for details on any remaining functionality it provides.
 
-##License
+## License
 
 Licensed under the MIT License (MIT)
 
